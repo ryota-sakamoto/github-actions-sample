@@ -1,0 +1,17 @@
+name: Go
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: publish
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: docker.pkg.github.com/ryota-sakamoto/argocd-sample/app
+          username: ryota-sakamoto
+          password: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
+          registry: docker.pkg.github.com
